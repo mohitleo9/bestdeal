@@ -53,10 +53,7 @@ class BestHotelDeal(object):
     return self.rsv
 
   def getBestDeal(self):
-    if self.best_deal is not None:
-      return self.best_deal._promoTxt
-    else:
-      return 'None'
+    return self.best_deal._promoTxt if self.best_deal._promoTxt else 'no deal available'
 
 
 def main():
