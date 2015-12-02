@@ -1,7 +1,7 @@
 import sys
 from datetime import datetime
 import csv
-from allDealClasses import Deal, DealPct, DealRebate, DealRebate3Plus, Reservation
+from allDealClasses import Deal, Reservation
 
 class BestHotelDeal(object):
   def __init__(self):
