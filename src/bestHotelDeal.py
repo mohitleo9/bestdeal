@@ -24,19 +24,12 @@ class BestHotelDeal(object):
 
   def read_store_deals(self):
     with open(self.FILENAME, 'rb') as f:
-      reader = csv.reader(f)
-      hotelDeals = list(reader)
-
-    for deal_args in hotelDeals[1:]:
-#      print self.deal_hash_table
-      print deal_args
-      curr_deal = None
-      curr_deal = Deal.factory(deal_args[1], deal_args[2], deal_args[3], deal_args[4], deal_args[5], deal_args[6])
-      if deal_args[0] in self.deal_hash_table:
-        self.deal_hash_table[deal_args[0]].append(curr_deal)
-      else:
-        self.deal_hash_table[deal_args[0]] = []
-        self.deal_hash_table[deal_args[0]].append(curr_deal)
+      hotelDeals = csv.DictReader(f)
+      for deal_args in hotelDeals:
+        print deal_args
+        curr_deal = None
+        curr_deal = Deal.factory(deal_args['nightly_rate'], deal_args['promo_txt'], deal_args['deal_value'], deal_args['deal_type'], deal_args['start_date'], deal_args['end_date'])
+        self.deal_hash_table.setdefault(deal_args['hotel_name'], []).append(curr_deal)
 
   def findBestDeal(self):
     # print "rsv hotel", self.rsv.hotel
