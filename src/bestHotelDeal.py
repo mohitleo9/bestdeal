@@ -20,7 +20,6 @@ class BestHotelDeal(object):
     CHECKIN = datetime.strptime(self.cmd_args[3], "%Y-%m-%d").date()
     NIGHTS = int(self.cmd_args[4])
     self.rsv = Reservation(HOTEL, CHECKIN, NIGHTS)
-#    print self.cmd_args
 
   def read_store_deals(self):
     with open(self.FILENAME, 'rb') as f:
@@ -39,18 +38,6 @@ class BestHotelDeal(object):
         if (discount>self.best):
             self.best = discount
             self.best_deal = hotel_deal
-
-  def getDealHashTable(self):
-    return self.deal_hash_table
-
-  def getCmdArgs(self):
-    return self.cmd_args
-
-  def getFilename(self):
-    return self.FILENAME
-
-  def getReservation(self):
-    return self.rsv
 
   def getBestDeal(self):
     return self.best_deal._promoTxt if self.best_deal._promoTxt else 'no deal available'
