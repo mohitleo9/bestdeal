@@ -1,7 +1,7 @@
 from abc import ABCMeta, abstractmethod
 from datetime import datetime
 
-class reservation(object):
+class Reservation(object):
   def __init__(self, hotel, checkinDate, nights):
     self.hotel = hotel;
     self.checkin = checkinDate;

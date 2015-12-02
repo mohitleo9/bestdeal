@@ -1,7 +1,7 @@
 import sys
 from datetime import datetime
 import csv
-from allDealClasses import Deal, DealPct, DealRebate, DealRebate3Plus, reservation
+from allDealClasses import Deal, DealPct, DealRebate, DealRebate3Plus, Reservation
 
 class BestHotelDeal(object):
   def __init__(self):
@@ -18,7 +18,7 @@ class BestHotelDeal(object):
     HOTEL = self.cmd_args[2]
     CHECKIN = datetime.strptime(self.cmd_args[3], "%Y-%m-%d").date()
     NIGHTS = int(self.cmd_args[4])
-    self.rsv = reservation(HOTEL, CHECKIN, NIGHTS)
+    self.rsv = Reservation(HOTEL, CHECKIN, NIGHTS)
 #    print self.cmd_args
 
   def read_store_deals(self):

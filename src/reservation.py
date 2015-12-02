@@ -1,6 +1,6 @@
 from datetime import date
 
-class reservation(object):
+class Reservation(object):
   def __init__(self, hotel, checkinDate, nights):
     self.hotel = hotel;
     self.checkin = checkinDate;
