@@ -2,6 +2,7 @@ import sys
 from datetime import datetime
 import csv
 from allDealClasses import Deal, Reservation
+import argparse
 
 
 class BestHotelDeal(object):
@@ -13,12 +14,17 @@ class BestHotelDeal(object):
     self.best = 0
     self.best_deal = None
 
-  def readCmdArgs(self, argms):
-    self.cmd_args = argms
-    self.FILENAME = self.cmd_args[1]
-    HOTEL = self.cmd_args[2]
-    CHECKIN = datetime.strptime(self.cmd_args[3], "%Y-%m-%d").date()
-    NIGHTS = int(self.cmd_args[4])
+  def readCmdArgs(self):
+    parser = argparse.ArgumentParser(description='best hotel deal')
+    parser.add_argument('FILENAME', help='Filename of input file. Must be provided.')
+    parser.add_argument('HOTEL', help='HOTELNAME . Must be provided.')
+    parser.add_argument('CHECKIN', help='CHECKIN start date . Must be provided.')
+    parser.add_argument('NIGHTS', type=int, help='Number of nights stay. Must be provided.')
+    args = parser.parse_args()
+    self.FILENAME = args.FILENAME
+    HOTEL = args.HOTEL
+    CHECKIN = datetime.strptime(args.CHECKIN, "%Y-%m-%d").date()
+    NIGHTS = args.NIGHTS
     self.rsv = Reservation(HOTEL, CHECKIN, NIGHTS)
 
   def read_store_deals(self):
@@ -44,9 +50,8 @@ class BestHotelDeal(object):
 
 
 def main():
-  print sys.argv
   bestDeal = BestHotelDeal()
-  bestDeal.readCmdArgs(sys.argv)
+  bestDeal.readCmdArgs()
   bestDeal.read_store_deals()
   bestDeal.findBestDeal()
 
