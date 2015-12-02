@@ -30,7 +30,7 @@ class BestHotelDeal(object):
 #      print self.deal_hash_table
       print deal_args
       curr_deal = None
-      curr_deal = Deal(deal_args[1], deal_args[2], deal_args[3], deal_args[4], deal_args[5], deal_args[6])
+      curr_deal = Deal.factory(deal_args[1], deal_args[2], deal_args[3], deal_args[4], deal_args[5], deal_args[6])
       if deal_args[0] in self.deal_hash_table:
         self.deal_hash_table[deal_args[0]].append(curr_deal)
       else:
