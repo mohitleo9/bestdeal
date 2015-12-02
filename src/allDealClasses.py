@@ -7,19 +7,18 @@ class Reservation(object):
     self.checkin = checkinDate
     self.nights = nights
 
-  def getCheckin(self):
+  def get_checkin(self):
     return self.checkin
 
-  def getHotel(self):
+  def get_hotel(self):
     return self.hotel
 
-  def getNights(self):
+  def get_nights(self):
     return self.nights
+
 
 class Deal(object):
   def __init__(self, rate, txt, dealValue, dealtype, startDate, endDate):
-    print 'val is'
-    print dealValue
     self._nightlyRate = rate
     self._promoTxt = txt
     self.dealValue = (-1) * float(dealValue)
@@ -34,7 +33,7 @@ class Deal(object):
     return self._promoTxt
 
   def isApplicable(self, rsv):
-    return (rsv.getCheckin() > self._startDate) and (rsv.getCheckin() < self._endDate)
+    return (rsv.get_checkin() > self._startDate) and (rsv.get_checkin() < self._endDate)
 
 
   def getDiscount(self, rsv):
@@ -59,13 +58,10 @@ class DealPct(Deal):
   def getDiscount(self, rsv):
     val = self.dealValue
     rate = self.getnightlyRate()
-    discount = int(val / 100.0) * (rate * rsv.getNights())
+    discount = int(val / 100.0) * (rate * rsv.get_nights())
     return discount
 
 class DealRebate(Deal):
-
-  def isApplicable(self, rsv):
-    return super(DealRebate, self).isApplicable(rsv)
 
   def getDiscount(self, rsv):
     discount = self.dealValue
@@ -75,7 +71,7 @@ class DealRebate3Plus(Deal):
 
   def isApplicable(self, rsv):
     val = super(DealRebate3Plus, self).isApplicable(rsv)
-    return val and rsv.getNights() >= 3
+    return val and rsv.get_nights() >= 3
 
   def getDiscount(self, rsv):
     discount = self.dealValue
