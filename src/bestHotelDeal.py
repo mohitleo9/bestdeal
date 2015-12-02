@@ -3,6 +3,7 @@ from datetime import datetime
 import csv
 from allDealClasses import Deal, Reservation
 
+
 class BestHotelDeal(object):
   def __init__(self):
     self.deal_hash_table = dict()

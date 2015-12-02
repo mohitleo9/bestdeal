@@ -5,7 +5,7 @@ class Reservation(object):
   def __init__(self, hotel, checkinDate, nights):
     self.hotel = hotel
     self.checkin = checkinDate
-    self.nights = nights
+    self.nights = int(nights)
 
   def get_checkin(self):
     return self.checkin
@@ -19,7 +19,7 @@ class Reservation(object):
 
 class Deal(object):
   def __init__(self, rate, txt, dealValue, dealtype, startDate, endDate):
-    self._nightlyRate = rate
+    self._nightlyRate = int(rate)
     self._promoTxt = txt
     self.dealValue = (-1) * float(dealValue)
     self._dealType = dealtype
@@ -58,7 +58,7 @@ class DealPct(Deal):
   def getDiscount(self, rsv):
     val = self.dealValue
     rate = self.getnightlyRate()
-    discount = int(val / 100.0) * (rate * rsv.get_nights())
+    discount = (val / 100.0) * float(rate * rsv.get_nights())
     return discount
 
 class DealRebate(Deal):
