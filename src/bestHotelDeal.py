@@ -6,8 +6,8 @@ from allDealClasses import Deal, Reservation
 
 class BestHotelDeal(object):
   def __init__(self):
-    self.deal_hash_table = dict()
-    self.cmd_args = list()
+    self.deal_hash_table = {}
+    self.cmd_args = []
     self.FILENAME = ''
     self.rsv = None
     self.best = 0
@@ -66,7 +66,6 @@ class BestHotelDeal(object):
       return 'None'
 
 
-
 def main():
   print sys.argv
   bestDeal = BestHotelDeal()
@@ -80,7 +79,3 @@ def main():
 
 if __name__ == '__main__':
   main()
-
-
-
-
